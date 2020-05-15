@@ -6,8 +6,8 @@ const People = ({id, data, setData, world, setWorld}) => {
 
     useEffect (() => {
         axios.get("https://swapi.dev/api/people/"+id)
-            .then(response => {
-                setWorld(response.data.homeworld.substring(response.data.homeworld.lastIndexOf('/')-1));
+            .then(response => { 
+                setWorld(response.data.homeworld.substring(response.data.homeworld.slice(0,response.data.homeworld.length-1).lastIndexOf('/')+1));
                 setData(response.data)
             })
             .catch(error => {handleReject()})
